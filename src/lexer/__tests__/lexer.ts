@@ -1,4 +1,4 @@
-import { TokenType, Lexer } from ".."
+import { TokenType, Lexer } from "..";
 
 test('test getNextToken()', () => {
   const input = `=+(){},;`;

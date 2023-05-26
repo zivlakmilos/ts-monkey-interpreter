@@ -2,8 +2,9 @@
   "name": "ts-monkey-interpreter",
   "version": "1.0.0",
   "description": "Monkey Intepreter in TypeScript",
-  "main": "src/index.ts",
+  "main": "src/cli.ts",
   "scripts": {
+    "start": "ts-node src/cli.ts",
     "test": "jest"
   },
   "repository": {

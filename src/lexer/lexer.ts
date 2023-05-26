@@ -63,7 +63,7 @@ const Keywords = {
 export class Lexer {
   private position: number = 0;
   private nextPosition: number = 0;
-  private ch: string;
+  private ch: string = '';
 
   constructor(private input: string) {
     this.readChar();
@@ -128,7 +128,7 @@ export class Lexer {
         tok = createToken(TokenType.Semicolon, this.ch);
         break;
       case '\0':
-        tok = createToken(TokenType.Eof, this.ch);
+        tok = createToken(TokenType.Eof, 'eof');
         break;
       default:
         if (this.isLetter(this.ch)) {
@@ -197,8 +197,8 @@ export class Lexer {
   }
 
   private lookupIdent(ident: string): TokenItem {
-    if (Keywords[ident]) {
-      return Keywords[ident];
+    if (Keywords[ident as keyof typeof Keywords]) {
+      return Keywords[ident as keyof typeof Keywords];
     }
 
     return TokenType.Ident;
