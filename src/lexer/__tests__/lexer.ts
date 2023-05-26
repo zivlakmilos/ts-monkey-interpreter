@@ -1,9 +1,9 @@
-import { TokenType, Tokenizer } from ".."
+import { TokenType, Lexer } from ".."
 
 test('test getNextToken()', () => {
   const input = `=+(){},;`;
 
-  const lexer = new Tokenizer(input);
+  const lexer = new Lexer(input);
 
   const tokens = [
     TokenType.Assign,
@@ -34,7 +34,7 @@ let add = fn(x, y) {
 let result = add(five, ten);
 `;
 
-  const lexer = new Tokenizer(input);
+  const lexer = new Lexer(input);
 
   const tokens = [
     { type: TokenType.Let, literal: 'let' },
@@ -102,7 +102,7 @@ let result = add(five, ten);
 5 < 10 > 5;
 `;
 
-  const lexer = new Tokenizer(input);
+  const lexer = new Lexer(input);
 
   const tokens = [
     { type: TokenType.Let, literal: 'let' },
@@ -191,7 +191,7 @@ if (5 < 10) {
 }
 `;
 
-  const lexer = new Tokenizer(input);
+  const lexer = new Lexer(input);
 
   const tokens = [
     { type: TokenType.Let, literal: 'let' },
@@ -300,7 +300,7 @@ if (5 < 10) {
 10 != 10;
 `;
 
-  const lexer = new Tokenizer(input);
+  const lexer = new Lexer(input);
 
   const tokens = [
     { type: TokenType.Let, literal: 'let' },

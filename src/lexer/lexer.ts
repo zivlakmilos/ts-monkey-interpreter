@@ -60,7 +60,7 @@ const Keywords = {
   return: TokenType.Return,
 } as const;
 
-export class Tokenizer {
+export class Lexer {
   private position: number = 0;
   private nextPosition: number = 0;
   private ch: string;
