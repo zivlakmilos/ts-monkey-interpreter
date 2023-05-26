@@ -29,6 +29,11 @@ export const TokenType = {
   // keywords
   Function: 'FUNCTION',
   Let: 'LET',
+  True: 'true',
+  False: 'false',
+  If: 'if',
+  Else: 'else',
+  Return: 'return',
 } as const;
 
 type TokenItem = typeof TokenType[keyof typeof TokenType];
@@ -45,6 +50,11 @@ export const createToken = (type: TokenItem, literal: string): Token => {
 const Keywords = {
   fn: TokenType.Function,
   let: TokenType.Let,
+  true: TokenType.True,
+  false: TokenType.False,
+  if: TokenType.If,
+  else: TokenType.Else,
+  return: TokenType.Return,
 } as const;
 
 export class Tokenizer {
