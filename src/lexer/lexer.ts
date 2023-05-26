@@ -9,6 +9,13 @@ export const TokenType = {
   // operators
   Assign: '=',
   Plus: '+',
+  Minus: '-',
+  Bang: '!',
+  Asterisk: '*',
+  Slash: '/',
+
+  LT: '<',
+  GT: '<',
 
   // delimeters
   Comma: ',',
@@ -60,6 +67,24 @@ export class Tokenizer {
         break;
       case '+':
         tok = createToken(TokenType.Plus, this.ch);
+        break;
+      case '-':
+        tok = createToken(TokenType.Minus, this.ch);
+        break;
+      case '!':
+        tok = createToken(TokenType.Bang, this.ch);
+        break;
+      case '/':
+        tok = createToken(TokenType.Slash, this.ch);
+        break;
+      case '*':
+        tok = createToken(TokenType.Asterisk, this.ch);
+        break;
+      case '<':
+        tok = createToken(TokenType.LT, this.ch);
+        break;
+      case '>':
+        tok = createToken(TokenType.GT, this.ch);
         break;
       case '(':
         tok = createToken(TokenType.LParen, this.ch);
