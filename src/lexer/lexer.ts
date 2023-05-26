@@ -17,6 +17,9 @@ export const TokenType = {
   LT: '<',
   GT: '<',
 
+  Equal: '==',
+  NotEqual: '!=',
+
   // delimeters
   Comma: ',',
   Semicolon: ';',
@@ -73,7 +76,12 @@ export class Tokenizer {
 
     switch (this.ch) {
       case '=':
-        tok = createToken(TokenType.Assign, this.ch);
+        if (this.peekChar() === '=') {
+          this.readChar();
+          tok = createToken(TokenType.Equal, '==');
+        } else {
+          tok = createToken(TokenType.Assign, this.ch);
+        }
         break;
       case '+':
         tok = createToken(TokenType.Plus, this.ch);
@@ -82,7 +90,12 @@ export class Tokenizer {
         tok = createToken(TokenType.Minus, this.ch);
         break;
       case '!':
-        tok = createToken(TokenType.Bang, this.ch);
+        if (this.peekChar() === '=') {
+          this.readChar();
+          tok = createToken(TokenType.NotEqual, '!=');
+        } else {
+          tok = createToken(TokenType.Bang, this.ch);
+        }
         break;
       case '/':
         tok = createToken(TokenType.Slash, this.ch);
@@ -147,6 +160,14 @@ export class Tokenizer {
 
     this.position = this.nextPosition;
     this.nextPosition++;
+  }
+
+  private peekChar(): string {
+    if (this.nextPosition >= this.input.length) {
+      return '\0';
+    }
+
+    return this.input[this.nextPosition];
   }
 
   private readIdentifier(): string {
