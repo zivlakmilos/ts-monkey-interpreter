@@ -13,7 +13,7 @@ export type Expression = Node & {
 }
 
 export class Program implements Node {
-  private statements: Statement[] = [];
+  public statements: Statement[] = [];
 
   constructor() {
   }
@@ -27,10 +27,10 @@ export class Program implements Node {
   }
 }
 
-class LetStatement implements Statement {
-  private token: Token;
-  private name: Identifier;
-  private value: Expression;
+export class LetStatement implements Statement {
+  public token: Token;
+  public name: Identifier;
+  public value: Expression;
 
   constructor() {
   }
@@ -43,9 +43,16 @@ class LetStatement implements Statement {
   }
 }
 
-class Identifier implements Expression {
-  private token: Token;
-  private value: string;
+export const isLetStatement = (stmt: Statement): stmt is LetStatement => {
+  const letStmt = stmt as LetStatement;
+  // TODO: Change when implement expressions to require value
+  //return letStmt.name !== undefined && letStmt.value !== undefined;
+  return letStmt.name !== undefined;
+}
+
+export class Identifier implements Expression {
+  public token: Token;
+  public value: string;
 
   constructor() {
   }

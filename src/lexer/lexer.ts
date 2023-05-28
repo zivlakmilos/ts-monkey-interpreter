@@ -39,7 +39,7 @@ export const TokenType = {
   Return: 'return',
 } as const;
 
-type TokenItem = typeof TokenType[keyof typeof TokenType];
+export type TokenItem = typeof TokenType[keyof typeof TokenType];
 
 export type Token = {
   type: TokenItem,
