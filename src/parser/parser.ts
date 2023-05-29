@@ -4,6 +4,7 @@ import { Lexer, Token, TokenItem, TokenType } from "../lexer";
 export class Parser {
   private curToken: Token;
   private peekToken: Token;
+  private errors: string[] = [];
 
   constructor(private lexer: Lexer) {
     this.nextToken();
@@ -22,6 +23,10 @@ export class Parser {
     }
 
     return program;
+  }
+
+  public getErrors(): string[] {
+    return this.errors;
   }
 
   private parseStatement(): Statement | undefined {
@@ -71,7 +76,12 @@ export class Parser {
       return true;
     }
 
+    this.peekError(t);
     return false;
+  }
+
+  private peekError(t: TokenItem) {
+    this.errors.push(`expected next togken to be ${t} but got ${this.peekToken.type} instead`);
   }
 
   private nextToken(): void {

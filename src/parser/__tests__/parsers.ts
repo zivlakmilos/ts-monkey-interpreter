@@ -22,6 +22,16 @@ const testLetStatement = (stmt: Statement, name: string): string | undefined => 
   return undefined;
 }
 
+const checkParserErrors = (parser: Parser) => {
+  const errors = parser.getErrors();
+
+  if (!errors.length) {
+    return;
+  }
+
+  throw new Error(errors.join('\n'));
+}
+
 test('test TestLetStatements', () => {
   const input = `
 let x = 5;
@@ -33,6 +43,8 @@ let foobar = 838383;
   const parser = new Parser(lexer);
 
   const program = parser.parseProgram();
+  checkParserErrors(parser);
+
   if (!program) {
     throw new Error('parseProgram() returned undefined');
   }
