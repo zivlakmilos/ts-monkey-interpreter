@@ -50,6 +50,28 @@ export const isLetStatement = (stmt: Statement): stmt is LetStatement => {
   return letStmt.name !== undefined;
 }
 
+export class ReturnStatement implements Statement {
+  public token: Token;
+  public returnValue: Expression;
+
+  constructor() {
+  }
+
+  public tokenLiteral(): string {
+    return this.token.literal;
+  }
+
+  public statementNode() {
+  }
+}
+
+export const isReturnStatement = (stmt: Statement): stmt is LetStatement => {
+  const retStmt = stmt as ReturnStatement;
+  // TODO: Change when implement expressions to require value
+  //return letStmt.value !== undefined;
+  return true;
+}
+
 export class Identifier implements Expression {
   public token: Token;
   public value: string;
