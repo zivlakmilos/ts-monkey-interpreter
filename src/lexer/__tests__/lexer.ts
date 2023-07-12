@@ -22,7 +22,6 @@ test('test getNextToken()', () => {
   }
 });
 
-
 test('test getNextToken()', () => {
   const input = `let five = 5;
 let ten = 10;
